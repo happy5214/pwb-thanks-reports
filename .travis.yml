@@ -11,6 +11,7 @@ python:
 install:
   - pip install git+https://github.com/wikimedia/pywikibot-core
   - pip install nose
+  - pip install tabulate
 # command to run tests
 script: nosetests -v tests.tests
 env:
