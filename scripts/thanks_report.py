@@ -16,7 +16,7 @@ These are the specific command line parameters for this script:
 #
 # Distributed under the terms of the MIT license.
 #
-from __future__ import absolute_import, unicode_literals
+from __future__ import absolute_import, print_function, unicode_literals
 
 from collections import Counter
 import datetime
@@ -47,10 +47,10 @@ class ThanksReportBot(object):
         data = self.parse(*(self.gather()))
         month = datetime.date(self.year, self.month, 1)
         month_str = month.strftime('%B %Y')
-        print "Thank givers for {}".format(month_str)
+        print("Thank givers for {}".format(month_str))
         self.format(data[0])
-        print
-        print "Thank recipients for {}".format(month_str)
+        print()
+        print("Thank recipients for {}".format(month_str))
         self.format(data[1])
 
     def gather(self):
@@ -100,7 +100,7 @@ class ThanksReportBot(object):
             user_link = '[[Special:CentralAuth/{}]]'.format(user)
             rows.append([index, user_link, -count])
             last_count = count
-        print tabulate(rows, ['#', 'User', 'Thanks'], tablefmt='mediawiki')
+        print(tabulate(rows, ['#', 'User', 'Thanks'], tablefmt='mediawiki'))
 
 
 def main(*args):
