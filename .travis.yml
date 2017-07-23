@@ -1,0 +1,17 @@
+language: python
+python:
+  - "2.7"
+  - "3.2"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+# command to install dependencies
+# install: "pip install -r requirements.txt"
+install:
+  - pip install git+https://github.com/wikimedia/pywikibot-core
+  - pip install nose
+# command to run tests
+script: nosetests -v tests.tests
+env:
+ - PYWIKIBOT2_NO_USER_CONFIG=1
