@@ -44,7 +44,7 @@ class ThanksReportBot(object):
 
     def run(self):
         """Run the bot."""
-        data = self.gather()
+        data = self.parse(*(self.gather()))
         month = datetime.date(self.year, self.month, 1)
         month_str = month.strftime('%B %Y')
         print "Thank givers for {}".format(month_str)
@@ -66,7 +66,9 @@ class ThanksReportBot(object):
             thankees.append(entry.page())
         thankers_count = Counter(thankers)
         thankees_count = Counter(thankees)
+        return (thankers_count, thankees_count)
 
+    def parse(self, thankers_count, thankees_count):
         included_thankers = []
         included_thankees = []
         for k,v in thankers_count.iteritems():
