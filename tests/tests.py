@@ -35,12 +35,68 @@ class TestThanksReportBot(TestCase):
                                       'Bad thankees report')
 
 
+class TestEnWikipediaThanks(TestThanksReportBot):
+
+    """Test the thanks report with enwiki."""
+
+    family = 'wikipedia'
+    code = 'en'
+
+    def test_September2016(self):
+        """Test on enwiki using data from September 2016."""
+        good_data = [
+            {'Rms125a@hotmail.com': 920, 'Dr. Blofeld': 372, 'BilCat': 308,
+             'Kew Gardens 613': 248, 'Ottawahitech': 164, 'Gerda Arendt': 155,
+             'Oshwah': 153, 'Martinevans123': 144, 'Ahunt': 137,
+             'Edwardx': 136},
+            {'Epicgenius': 166, 'NeilN': 154, 'Oshwah': 118, 'Sro23': 110,
+             'I dream of horses': 107, 'Frietjes': 92, 'Bbb23': 89,
+             'Derek R Bullamore': 87, 'Jytdog': 87, 'Tdorante10': 85}
+        ]
+        self._thanks_for_month(2016, 9, good_data, min_actions=85)
+
+
+class TestCommonsThanks(TestThanksReportBot):
+
+    """Test the thanks report with commons."""
+
+    family = 'commons'
+    code = 'commons'
+
+    def test_October2016(self):
+        """Test on commons using data from October 2016."""
+        good_data = [
+            {'Tokorokoko': 155, 'Fæ': 120, 'W.carter': 112,
+             'Michael Barera': 96, 'Iifar': 94, 'Ikan Kekek': 82,
+             'Johann Jaritz': 71, 'Celeda': 54, 'Ibirapuera': 44,
+             'Tuvalkin': 41},
+            {'INeverCry': 141, 'Wieralee': 62, 'Vengolis': 61, 'Ikan Kekek': 58,
+             'Daniel Case': 54, 'W.carter': 47, 'Finoskov': 47, 'Jcb': 42,
+             'Jkadavoor': 35, 'Martin Falbisoner': 34}
+        ]
+        self._thanks_for_month(2016, 10, good_data, min_actions=34)
+
+
 class TestOutreachThanks(TestThanksReportBot):
 
     """Test the thanks report with outreach."""
 
     family = 'outreach'
     code = 'outreach'
+
+    def test_June2016(self):
+        """Test on outreach using data from June 2016."""
+        good_data = [
+            {'Romaine': 44, 'Kaarel Vaidla (WM EE)': 2, 'Jane023': 2,
+             'SPanigrahi (WMF)': 1, 'Pigsonthewing': 1, 'KLove (WMF)': 1,
+             'TFlanagan-WMF': 1, 'Ginanietoc3107': 1, 'Rodrigo Padula': 1,
+             'Lilitik22': 1},
+            {'Museu33389': 4, 'Andycyca': 3, 'Rodrigo Padula': 3, 'Fuzheado': 3,
+             'SPanigrahi (WMF)': 2, 'Pigsonthewing': 2, 'WereSpielChequers': 2,
+             'Astinson (WMF)': 2, 'Beat Estermann': 2, 'Elisabethwiessner': 1}
+
+        ]
+        self._thanks_for_month(2016, 6, good_data, 1)
 
     def test_August2016(self):
         """Test on outreach using data from August 2016."""
