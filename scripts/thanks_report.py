@@ -71,10 +71,10 @@ class ThanksReportBot(object):
     def parse(self, thankers_count, thankees_count):
         included_thankers = []
         included_thankees = []
-        for k,v in thankers_count.iteritems():
+        for k,v in thankers_count.items():
             if v >= self.minimum_actions:
                 included_thankers.append((-v,k))
-        for k,v in thankees_count.iteritems():
+        for k,v in thankees_count.items():
             if v >= self.minimum_actions:
                 included_thankees.append((-v,k))
         included_thankers.sort()
