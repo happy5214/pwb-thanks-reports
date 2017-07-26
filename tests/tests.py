@@ -121,7 +121,7 @@ class TestTabulateOutput(TestCase):
                               minimum_actions=3)
         bot.site = pywikibot.Site(fam='outreach', code='outreach')
         data = bot.parse(*(bot.gather()))
-        actual_tables = map(bot.format, data)
+        actual_tables = tuple(map(bot.format, data))
         good_tables = (
             """{| class="wikitable" style="text-align: left;"
 |+ <!-- caption -->
