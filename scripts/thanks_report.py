@@ -48,10 +48,10 @@ class ThanksReportBot(object):
         month = datetime.date(self.year, self.month, 1)
         month_str = month.strftime('%B %Y')
         print("Thank givers for {}".format(month_str))
-        self.format(data[0])
+        print(self.format(data[0]))
         print()
         print("Thank recipients for {}".format(month_str))
-        self.format(data[1])
+        print(self.format(data[1]))
 
     def gather(self):
         """Gather and parse the log data."""
@@ -100,7 +100,7 @@ class ThanksReportBot(object):
             user_link = '[[Special:CentralAuth/{}]]'.format(user)
             rows.append([index, user_link, -count])
             last_count = count
-        print(tabulate(rows, ['#', 'User', 'Thanks'], tablefmt='mediawiki'))
+        return tabulate(rows, ['#', 'User', 'Thanks'], tablefmt='mediawiki')
 
 
 def main(*args):

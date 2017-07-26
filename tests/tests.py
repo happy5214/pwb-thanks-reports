@@ -109,3 +109,50 @@ class TestOutreachThanks(TestThanksReportBot):
              'Pigsonthewing': 1, 'Ijon': 1}
         ]
         self._thanks_for_month(2016, 8, good_data, 1)
+
+
+class TestTabulateOutput(TestCase):
+
+    """Test the bot's table output"""
+
+    def test_outreach_August2016(self):
+        """Test the table output using August 2016 outreach data."""
+        bot = ThanksReportBot(year=2016, month=8,
+                              minimum_actions=3)
+        bot.site = pywikibot.Site(fam='outreach', code='outreach')
+        data = bot.parse(*(bot.gather()))
+        actual_tables = map(bot.format, data)
+        good_tables = (
+            """{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! align="right"|   # !! User                                  !! align="right"|   Thanks
+|-
+| align="right"|   1 || [[Special:CentralAuth/Romaine]]       || align="right"|       20
+|-
+| align="right"|   2 || [[Special:CentralAuth/Msannakoval]]   || align="right"|       13
+|-
+| align="right"|   3 || [[Special:CentralAuth/Joalpe]]        || align="right"|        3
+|-
+| align="right"|   3 || [[Special:CentralAuth/Masssly]]       || align="right"|        3
+|-
+| align="right"|   3 || [[Special:CentralAuth/TFlanagan-WMF]] || align="right"|        3
+|}""",
+            """{| class="wikitable" style="text-align: left;"
+|+ <!-- caption -->
+|-
+! align="right"|   # !! User                                !! align="right"|   Thanks
+|-
+| align="right"|   1 || [[Special:CentralAuth/Loreen.Ruiz]] || align="right"|        5
+|-
+| align="right"|   2 || [[Special:CentralAuth/Koavf]]       || align="right"|        4
+|-
+| align="right"|   3 || [[Special:CentralAuth/Andycyca]]    || align="right"|        3
+|-
+| align="right"|   3 || [[Special:CentralAuth/Msannakoval]] || align="right"|        3
+|}"""
+        )
+        self.assertEqual(actual_tables[0], good_tables[0],
+                         'Thanker table output is mismatched.')
+        self.assertEqual(actual_tables[1], good_tables[1],
+                         'Thanker table output is mismatched.')
